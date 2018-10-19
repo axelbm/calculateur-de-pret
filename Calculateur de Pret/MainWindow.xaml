@@ -5,8 +5,141 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Calculateur_de_Pret"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
-    </Grid>
+        Title="MainWindow" Height="487" Width="621">
+
+	<Window.Resources>
+		<local:Calculateur x:Key="Cacl"/>
+	</Window.Resources>
+
+
+	<Grid Margin="0,10,0,-10">
+
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto"/>
+			<RowDefinition/>
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="0*"/>
+			<ColumnDefinition Width="395*"/>
+			<ColumnDefinition Width="397*"/>
+		</Grid.ColumnDefinitions>
+		<Button x:Name="BtnVersement" Grid.Column="1" Margin="30,10,20,0" Height="95" Click="Button_Click" Background="White" FontSize="24">
+			<TextBlock Text="Calculer mon versement" TextWrapping="Wrap" TextAlignment="Center"/>
+		</Button>
+		<Button x:Name="BtnMax" Grid.Column="2" Margin="20,10,30,10" Height="95" Click="Button_Click_1" Background="White" FontSize="24">
+			<TextBlock Text="Calculer le montant maximal de mon prêt" TextWrapping="Wrap" TextAlignment="Center"/>
+		</Button>
+		<Grid x:Name="CalVersement" Grid.Column="1" Height="298" Margin="30,10,30,0" VerticalAlignment="Top" Grid.ColumnSpan="2" Grid.Row="1">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="230"/>
+				<ColumnDefinition/>
+				<ColumnDefinition Width="100"/>
+			</Grid.ColumnDefinitions>
+
+			<Grid.Resources>
+				<local:Calculateur x:Key="Calc"/>
+
+				<Style TargetType="{x:Type Slider}">
+					<Setter Property="Cursor" Value="Hand"/>
+					<Setter Property="Grid.Column" Value="1"/>
+					<Setter Property="VerticalAlignment" Value="Center"/>
+					<Setter Property="TickPlacement" Value="BottomRight"/>
+					<Setter Property="Cursor" Value="Hand"/>
+				</Style>
+			</Grid.Resources>
+
+
+
+			<Label Content="Prix de votre nouveau véhicule" Grid.Row="0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+			<Slider x:Name="SdrPrix" Grid.Row="0" Maximum="60000" LargeChange="100" TickFrequency="10000"
+				Value="{Binding Path=Prix, Source={StaticResource Calc}, Mode=TwoWay}"/>
+			<TextBox x:Name="TbxPrix" Grid.Column="2" Grid.Row="0" VerticalAlignment="Center" PreviewTextInput="IsTextAllowed" HorizontalContentAlignment="Right"
+				Text="{Binding Path=Prix, Source={StaticResource Calc}, Mode=TwoWay, StringFormat={}{0:c}}" Margin="10,0,0,0"/>
+
+			<Label Content="Valeur de votre véhicule d'échange" Grid.Row="1" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+			<Slider x:Name="SdrEchange" Grid.Row="1" Maximum="60000" LargeChange="100" TickFrequency="10000"
+				Value="{Binding Path=Echange, Source={StaticResource Calc}, Mode=TwoWay}"/>
+			<TextBox x:Name="TbxEchange" Grid.Column="2" Grid.Row="1" VerticalAlignment="Center" PreviewTextInput="IsTextAllowed" HorizontalContentAlignment="Right"
+				Text="{Binding Path=Echange, Source={StaticResource Calc}, Mode=TwoWay, StringFormat={}{0:c}}" Margin="10,0,0,0"/>
+
+			<Label Content="Solde du prêt pour votre véhicule actuel" Grid.Row="2" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+			<Slider x:Name="SdrSolde" Grid.Row="2" Maximum="60000" LargeChange="100" TickFrequency="10000"
+				Value="{Binding Path=Solde, Source={StaticResource Calc}, Mode=TwoWay}"/>
+			<TextBox x:Name="TbxSolde" Grid.Column="2" Grid.Row="2" VerticalAlignment="Center" PreviewTextInput="IsTextAllowed" HorizontalContentAlignment="Right"
+				Text="{Binding Path=Solde, Source={StaticResource Calc}, Mode=TwoWay, StringFormat={}{0:c}}" Margin="10,0,0,0"/>
+
+			<Label Content="Votre mise de fonds" Grid.Row="3" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+			<Slider x:Name="SdrMdf" Grid.Row="3" Maximum="60000" LargeChange="100" TickFrequency="10000"
+				Value="{Binding Path=Mdf, Source={StaticResource Calc}, Mode=TwoWay}"/>
+			<TextBox x:Name="TbxMdf" Grid.Column="2" Grid.Row="3" VerticalAlignment="Center" PreviewTextInput="IsTextAllowed" HorizontalContentAlignment="Right"
+				Text="{Binding Path=Mdf, Source={StaticResource Calc}, Mode=TwoWay, StringFormat={}{0:c}}" Margin="10,0,0,0"/>
+
+			<Label Content="Durée de votre prêt" Grid.Row="4" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+			<Slider x:Name="SdrDuree" Grid.Row="4" Maximum="96" LargeChange="6" TickFrequency="12"
+				Value="{Binding Path=Duree, Source={StaticResource Calc}, Mode=TwoWay}"/>
+			<TextBox x:Name="TbxDuree" Grid.Column="2" Grid.Row="4" VerticalAlignment="Center" PreviewTextInput="IsTextAllowed" HorizontalContentAlignment="Right"
+				Text="{Binding Path=Duree, Source={StaticResource Calc}, Mode=TwoWay, StringFormat={}{0} mo}" Margin="10,0,0,0"/>
+
+			<Label Content="Taxe de vente provinciale" Grid.Row="5" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+			<Slider x:Name="SdrTvp" Grid.Row="5" Maximum="15" LargeChange="1" TickFrequency="5"
+				Value="{Binding Path=Tvp, Source={StaticResource Calc}, Mode=TwoWay}"/>
+			<TextBox x:Name="TbxTvp" Grid.Column="2" Grid.Row="5" VerticalAlignment="Center" PreviewTextInput="IsTextAllowed" HorizontalContentAlignment="Right"
+				Text="{Binding Path=Tvp, Source={StaticResource Calc}, Mode=TwoWay, StringFormat={}{0:n2} %}" Margin="10,0,0,0"/>
+
+			<Label Content="Taux d'intérêt prévu" Grid.Row="6" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+			<Slider x:Name="SdrTaux" Grid.Row="6" Maximum="15" LargeChange="1" TickFrequency="5"
+				Value="{Binding Path=Taux, Source={StaticResource Calc}, Mode=TwoWay}"/>
+			<TextBox x:Name="TbxTaux" Grid.Column="2" Grid.Row="6" VerticalAlignment="Center" PreviewTextInput="IsTextAllowed" HorizontalContentAlignment="Right"
+				Text="{Binding Path=Taux, Source={StaticResource Calc}, Mode=TwoWay, StringFormat={}{0:n2} %}" Margin="10,0,0,0"/>
+
+			<Separator Grid.Row="7" RenderTransformOrigin="0.38,1.1" Grid.ColumnSpan="3" Height="16"/>
+
+			<Label Content="Votre montant total à financer sera :" Grid.Row="8" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+			<TextBox Grid.Column="2" Grid.Row="8" VerticalAlignment="Center" PreviewTextInput="IsTextAllowed" HorizontalContentAlignment="Right" Margin="10,0,0,0"/>
+
+			<Label Content="Versements mensuelles :" Grid.Row="9" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+			<TextBox Grid.Column="2" Grid.Row="9" VerticalAlignment="Center" PreviewTextInput="IsTextAllowed" HorizontalContentAlignment="Right" Margin="10,0,0,0"/>
+
+			<Label Content="Total des intérêts à payer :" Grid.Row="10" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+			<TextBox Grid.Column="2" Grid.Row="10" VerticalAlignment="Center" PreviewTextInput="IsTextAllowed" HorizontalContentAlignment="Right" Margin="10,0,0,0"/>
+
+		</Grid>
+		<Grid x:Name="CalMax" Grid.Column="1" HorizontalAlignment="Left" Height="300" Margin="30,0,0,0" VerticalAlignment="Top" Width="730" Grid.ColumnSpan="2" d:IsHidden="True" Grid.Row="1">
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="35*"/>
+				<ColumnDefinition Width="38*"/>
+			</Grid.ColumnDefinitions>
+			<Label Content="Valeur de votre véhicule d'échange" HorizontalAlignment="Left" Margin="0,26,0,0" VerticalAlignment="Top" RenderTransformOrigin="-11.711,-0.769" Height="26" Width="205"/>
+			<Label Content="Solde du prêt pour votre véhicule actuel" HorizontalAlignment="Left" Margin="0,57,0,0" VerticalAlignment="Top" RenderTransformOrigin="-11.711,-0.769" Height="25" Width="250"/>
+			<Label Content="Votre mise de fonds" HorizontalAlignment="Left" Margin="0,87,0,0" VerticalAlignment="Top" RenderTransformOrigin="-11.711,-0.769" Height="26" Width="190"/>
+			<Label Content="Durée de votre prêt" HorizontalAlignment="Left" Margin="0,113,0,0" VerticalAlignment="Top" RenderTransformOrigin="-11.711,-0.769" Height="26" Width="190"/>
+			<Label Content="Taxe de vente provinciale" HorizontalAlignment="Left" Margin="0,144,0,0" VerticalAlignment="Top" RenderTransformOrigin="-11.711,-0.769" Height="26" Width="190"/>
+			<Label Content="Prix de votre nouveau véhicule&#xA;" HorizontalAlignment="Left" Margin="2,1,0,0" VerticalAlignment="Top" RenderTransformOrigin="-11.711,-0.769" Height="26" Width="173"/>
+			<TextBox HorizontalAlignment="Left" Height="23" Margin="282,0,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" Grid.Column="1"/>
+			<TextBox HorizontalAlignment="Left" Height="23" Margin="282,28,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" Grid.Column="1"/>
+			<TextBox HorizontalAlignment="Left" Height="23" Margin="282,59,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" Grid.Column="1"/>
+			<TextBox HorizontalAlignment="Left" Height="23" Margin="282,87,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" Grid.Column="1"/>
+			<TextBox HorizontalAlignment="Left" Height="23" Margin="282,117,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" Grid.Column="1"/>
+			<TextBox HorizontalAlignment="Left" Height="23" Margin="282,145,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="98" Grid.Column="1"/>
+			<Slider HorizontalAlignment="Left" Margin="230,0,0,0" VerticalAlignment="Top" Width="397" Grid.ColumnSpan="2"/>
+			<Slider HorizontalAlignment="Left" Margin="230,28,0,0" VerticalAlignment="Top" Width="397" Grid.ColumnSpan="2"/>
+			<Slider HorizontalAlignment="Left" Margin="230,55,0,0" VerticalAlignment="Top" Width="397" Grid.ColumnSpan="2"/>
+			<Slider HorizontalAlignment="Left" Margin="230,82,0,0" VerticalAlignment="Top" Width="397" Grid.ColumnSpan="2"/>
+			<Slider HorizontalAlignment="Left" Margin="230,111,0,0" VerticalAlignment="Top" Width="397" Grid.ColumnSpan="2"/>
+			<Slider HorizontalAlignment="Left" Margin="230,139,0,0" VerticalAlignment="Top" Width="397" Grid.ColumnSpan="2"/>
+		</Grid>
+	</Grid>
 </Window>
