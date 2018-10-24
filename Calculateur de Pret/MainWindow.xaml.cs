@@ -23,8 +23,6 @@ namespace Calculateur_de_Pret
 
 	public partial class MainWindow : Window
 	{
-		private Calculateur Calc;
-		public static MainWindow Main;
 
 
 		public MainWindow()
@@ -32,12 +30,6 @@ namespace Calculateur_de_Pret
 			InitializeComponent();
 
 			ShowVersement();
-
-			Calc = new Calculateur();
-
-			Main = this;
-			Calc.Prix = 21;
-
 		}
 
 		private void Button_Click(object sender, RoutedEventArgs e)
@@ -59,6 +51,13 @@ namespace Calculateur_de_Pret
 			this.BtnMax.Background = Brushes.White;
 		}
 
+		private void CalculVersement()
+		{
+			
+		}
+
+
+
 		private void ShowMax()
 		{
 			this.CalVersement.Visibility = Visibility.Hidden;
@@ -71,10 +70,18 @@ namespace Calculateur_de_Pret
 
 		private void IsTextAllowed(object sender, TextCompositionEventArgs e)
 		{
-			Regex regex = new Regex("[^0-9]+");
+			Regex regex = new Regex("[^0-9.]+");
 			e.Handled = regex.IsMatch(e.Text);
 		}
 
+		private void Slider_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+		{
+			CalculVersement();
+		}
 
+		private void TextBox_TextChanged(object sender, TextChangedEventArgs e)
+		{
+			CalculVersement();
+		}
 	}
 }
