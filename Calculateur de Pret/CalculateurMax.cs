@@ -8,7 +8,7 @@ using Microsoft.VisualBasic;
 
 namespace Calculateur_de_Pret
 {
-	class Calculateur : INotifyPropertyChanged
+	class CalculateurMax : INotifyPropertyChanged
 	{
 		public event PropertyChangedEventHandler PropertyChanged;
 		private void OnPropertyChanged(string property)
@@ -17,6 +17,19 @@ namespace Calculateur_de_Pret
 				PropertyChanged(this, new PropertyChangedEventArgs(property));
 		}
 
+
+		private double maxMensualites = 1500;
+		public double MaxMensualites
+		{
+			get
+			{
+				return maxMensualites;
+			}
+			set
+			{
+				maxMensualites = value;
+			}
+		}
 
 		private double maxAmount = 60000;
 		public double MaxAmount
@@ -70,16 +83,16 @@ namespace Calculateur_de_Pret
 			}
 		}
 
-		private double prix;
-		public double Prix
+		private double mensualites;
+		public double Mensualites
 		{
 			get
 			{
-				return prix;
+				return mensualites;
 			}
 			set
 			{
-				prix = Math.Max(Math.Min(Math.Round(value, 2), MaxAmount), 0);
+				mensualites = Math.Max(Math.Min(Math.Round(value, 2), MaxAmount), 0);
 
 				OnPropertyChanged("Prix");
 				Calculer();
@@ -179,15 +192,13 @@ namespace Calculateur_de_Pret
 
 
 		public double Total { get; set; }
-		public double Mensualites { get; set; }
+		public double Prix { get; set; }
 		public double Difference { get; set; }
 		public void Calculer()
 		{
 			try
-			{	
-				Total = Math.Max((Prix - Echange) * (Tvp/100 + 1) - Mdf + Solde, 0);
-				Mensualites = -Financial.Pmt((Taux/100)/12, Duree, Total, 0, DueDate.EndOfPeriod);
-				Difference = Mensualites * Duree - Total;
+			{
+				Total = Financial.PV(Taux/100/12, Duree, -Mensualites, 0, DueDate.EndOfPeriod);
 			} catch (ArgumentException e)
 			{
 
