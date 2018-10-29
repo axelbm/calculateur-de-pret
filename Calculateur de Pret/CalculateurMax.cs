@@ -198,7 +198,10 @@ namespace Calculateur_de_Pret
 		{
 			try
 			{
-				Total = Financial.PV(Taux/100/12, Duree, -Mensualites, 0, DueDate.EndOfPeriod);
+				double pv = Financial.PV(Taux / 100 / 12, Duree, -Mensualites, 0, DueDate.EndOfPeriod);
+
+				Total = (pv + Mdf - Solde)/(Tvp / 100 + 1) + Echange;
+				Difference = (Mensualites * Duree) - pv;
 			} catch (ArgumentException e)
 			{
 

@@ -233,7 +233,7 @@
 
 			<TextBlock Text="Total des intérêts à payer :" Grid.Row="11" Style="{StaticResource TextBlock}" Grid.ColumnSpan="2"/>
 			<TextBlock Grid.Column="2" HorizontalAlignment="Right" Grid.Row="11" VerticalAlignment="Center" FontWeight="Bold" FontSize="24" Foreground="#FF5A5C6C" Margin="0,2.8" Grid.ColumnSpan="2"
-				   Text="{Binding Path=Differance, Source={StaticResource CalcVersement}, StringFormat={}{0:c}}"/>
+				   Text="{Binding Path=Difference, Source={StaticResource CalcVersement}, StringFormat={}{0:c}}"/>
 
 		</Grid>
 
@@ -273,71 +273,71 @@
 			</Grid.Resources>
 
 
-			<TextBlock Text="Votre versement mensuel :" Grid.Row="1" Style="{StaticResource TextBlock}" Margin="0.2,13.2,0,12.6"/>
+			<TextBlock Text="Votre versement   mensuel :" Grid.Row="1" Style="{StaticResource TextBlock}"/>
 			<Slider Grid.Row="1" LargeChange="100" TickFrequency="10000"
 				DataContext="{StaticResource CalcMax}"
 				Value="{Binding Path=Mensualites}"
-				Maximum="{Binding Path=MaxMensualites}" Grid.ColumnSpan="3" Grid.Column="1" Margin="169.2,10.2,110.2,9.6"/>
+				Maximum="{Binding Path=MaxMensualites}"/>
 			<TextBox Grid.Row="1" PreviewTextInput="IsTextAllowed"
-				Text="{Binding Path=Mensualites, Source={StaticResource CalcMax}, Mode=TwoWay, StringFormat={}{0:c}}" Margin="10.2,10.2,0.2,9.6"/>
+				Text="{Binding Path=Mensualites, Source={StaticResource CalcMax}, Mode=TwoWay, StringFormat={}{0:c}}"/>
 
-			<TextBlock Text="Valeur de votre véhicule d'échange :" Grid.Row="2" Style="{StaticResource TextBlock}" Margin="0.2,3.4,0,3.4"/>
+			<TextBlock Text="Valeur de votre véhicule d'échange :" Grid.Row="2" Style="{StaticResource TextBlock}"/>
 			<Slider Grid.Row="2" LargeChange="100" TickFrequency="10000"
 				DataContext="{StaticResource CalcMax}"
 				Value="{Binding Path=Echange}"
-				Maximum="{Binding Path=MaxAmount}" Grid.ColumnSpan="3" Grid.Column="1" Margin="169.2,10.4,110.2,10.4"/>
+				Maximum="{Binding Path=MaxAmount}"/>
 			<TextBox Grid.Row="2" PreviewTextInput="IsTextAllowed"
-				Text="{Binding Path=Echange, Source={StaticResource CalcMax}, Mode=TwoWay, StringFormat={}{0:c}}" Height="24" Margin="10.2,10.4,0.2,10.4"/>
+				Text="{Binding Path=Echange, Source={StaticResource CalcMax}, Mode=TwoWay, StringFormat={}{0:c}}"/>
 
-			<TextBlock Text="Solde du prêt pour votre véhicule actuel :" Grid.Row="3" Style="{StaticResource TextBlock}" Margin="0.2,3.6,0,4.2"/>
+			<TextBlock Text="Solde du prêt pour votre véhicule actuel :" Grid.Row="3" Style="{StaticResource TextBlock}"/>
 			<Slider Grid.Row="3" LargeChange="100" TickFrequency="10000"
 				DataContext="{StaticResource CalcMax}"
 				Value="{Binding Path=Solde}"
-				Maximum="{Binding Path=MaxAmount}" Grid.ColumnSpan="3" Grid.Column="1" Margin="169.2,9.6,110.2,10.2"/>
+				Maximum="{Binding Path=MaxAmount}"/>
 			<TextBox Grid.Row="3" PreviewTextInput="IsTextAllowed"
-				Text="{Binding Path=Solde, Source={StaticResource CalcMax}, Mode=TwoWay, StringFormat={}{0:c}}" Margin="10.2,9.6,0.2,10.2"/>
+				Text="{Binding Path=Solde, Source={StaticResource CalcMax}, Mode=TwoWay, StringFormat={}{0:c}}"/>
 
-			<TextBlock Text="Votre mise de fonds :" Grid.Row="4" Style="{StaticResource TextBlock}" Margin="0.2,12.8,0,13"/>
+			<TextBlock Text="Votre mise de fonds :" Grid.Row="4" Style="{StaticResource TextBlock}"/>
 			<Slider Grid.Row="4" LargeChange="100" TickFrequency="10000"
 				DataContext="{StaticResource CalcMax}"
 				Value="{Binding Path=Mdf}"
-				Maximum="{Binding Path=MaxAmount}" Grid.ColumnSpan="3" Grid.Column="1" Margin="169.2,9.8,110.2,10"/>
+				Maximum="{Binding Path=MaxAmount}"/>
 			<TextBox Grid.Row="4" PreviewTextInput="IsTextAllowed"
-				Text="{Binding Path=Mdf, Source={StaticResource CalcMax}, Mode=TwoWay, StringFormat={}{0:c}}" Margin="10.2,9.8,0.2,10"/>
+				Text="{Binding Path=Mdf, Source={StaticResource CalcMax}, Mode=TwoWay, StringFormat={}{0:c}}"/>
 
-			<TextBlock Text="Durée de votre prêt :" Grid.Row="5" Style="{StaticResource TextBlock}" Margin="0.2,13,0,12.8"/>
+			<TextBlock Text="Durée de votre prêt :" Grid.Row="5" Style="{StaticResource TextBlock}"/>
 			<Slider Grid.Row="5" LargeChange="6" TickFrequency="12"
 				DataContext="{StaticResource CalcMax}"
 				Value="{Binding Path=Duree}"
-				Maximum="{Binding Path=MaxDuree}" Grid.ColumnSpan="3" Grid.Column="1" Margin="169.2,10,110.2,9.8"/>
+				Maximum="{Binding Path=MaxDuree}"/>
 			<TextBox Grid.Row="5" PreviewTextInput="IsTextAllowed"
-				Text="{Binding Path=Duree, Source={StaticResource CalcMax}, Mode=TwoWay, StringFormat={}{0} mo}" Margin="10.2,10,0.2,9.8"/>
+				Text="{Binding Path=Duree, Source={StaticResource CalcMax}, Mode=TwoWay, StringFormat={}{0} mo}"/>
 
-			<TextBlock Text="Taxe de vente provinciale :" Grid.Row="6" Style="{StaticResource TextBlock}" Margin="0.2,13.2,0,12.6"/>
+			<TextBlock Text="Taxe de vente provinciale :" Grid.Row="6" Style="{StaticResource TextBlock}"/>
 			<Slider Grid.Row="6" LargeChange="1" TickFrequency="5"
 				DataContext="{StaticResource CalcMax}"
 				Value="{Binding Path=Tvp}"
-				Maximum="{Binding Path=MaxTaxe}" Grid.ColumnSpan="3" Grid.Column="1" Margin="169.2,10.2,110.2,9.6"/>
+				Maximum="{Binding Path=MaxTaxe}"/>
 			<TextBox Grid.Row="6" PreviewTextInput="IsTextAllowed"
-				Text="{Binding Path=Tvp, Source={StaticResource CalcMax}, Mode=TwoWay, StringFormat={}{0:n2} %}" Margin="10.2,10.2,0.2,9.6"/>
+				Text="{Binding Path=Tvp, Source={StaticResource CalcMax}, Mode=TwoWay, StringFormat={}{0:n2} %}"/>
 
-			<TextBlock Text="Taux d'intérêt prévu :" Grid.Row="7" Style="{StaticResource TextBlock}" Margin="0.2,13.4,0,13.4"/>
+			<TextBlock Text="Taux d'intérêt prévu :" Grid.Row="7" Style="{StaticResource TextBlock}"/>
 			<Slider Grid.Row="7" LargeChange="1" TickFrequency="5"
 				DataContext="{StaticResource CalcMax}"
 				Value="{Binding Path=Taux}"
-				Maximum="{Binding Path=MaxTaux}" Grid.ColumnSpan="3" Grid.Column="1" Margin="169.2,10.4,110.2,10.4"/>
+				Maximum="{Binding Path=MaxTaux}"/>
 			<TextBox Grid.Row="7" PreviewTextInput="IsTextAllowed"
-				Text="{Binding Path=Taux, Source={StaticResource CalcMax}, Mode=TwoWay, StringFormat={}{0:n2} %}" Height="24" Margin="10.2,10.4,0.2,10.4"/>
+				Text="{Binding Path=Taux, Source={StaticResource CalcMax}, Mode=TwoWay, StringFormat={}{0:n2} %}"/>
 
-			<Separator Grid.Column="1" Grid.Row="8" RenderTransformOrigin="0.38,1.1" Grid.ColumnSpan="3" Margin="0.2,1.6,0.2,2.2"/>
+			<Separator Grid.Column="1" Grid.Row="8" Grid.ColumnSpan="3"/>
 
-			<TextBlock Text="Votre montant total à financer sera :" Grid.Row="9" Style="{StaticResource TextBlock}" Grid.ColumnSpan="2" Margin="0.2,12.8,0,13"/>
+			<TextBlock Text="Prix cible du véhicule (avec taxes) :" Grid.Row="9" Style="{StaticResource TextBlock}" Grid.ColumnSpan="2"/>
 			<TextBlock Grid.Column="2" HorizontalAlignment="Right" Grid.Row="9" VerticalAlignment="Center" Grid.ColumnSpan="2" FontWeight="Bold" FontSize="24" Foreground="#FF5A5C6C"
-				   Text="{Binding Path=Total, Source={StaticResource CalcMax}, StringFormat={}{0:c}}" Margin="0,6.8,0.2,6"/>
+				   Text="{Binding Path=Total, Source={StaticResource CalcMax}, StringFormat={}{0:c}}"/>
 
-			<TextBlock Text="Versements mensuelles :" Grid.Row="10" Style="{StaticResource TextBlock}" Margin="0.2,13,0,12.8"/>
-			<TextBlock Grid.Column="2" HorizontalAlignment="Right" Grid.Row="10" VerticalAlignment="Center" FontWeight="Bold" FontSize="24" Foreground="#FF5A5C6C" Margin="0,6,0.2,6.8" Grid.ColumnSpan="2"
-				   Text="{Binding Path=Mensualites, Source={StaticResource CalcMax}, StringFormat={}{0:c}/mo}"/>
+			<TextBlock Text="Total des intérêts à payer sur la durée du prêt :" Grid.Row="10" Style="{StaticResource TextBlock}" Grid.ColumnSpan="2"/>
+			<TextBlock Grid.Column="2" HorizontalAlignment="Right" Grid.Row="10" VerticalAlignment="Center" FontWeight="Bold" FontSize="24" Foreground="#FF5A5C6C" Grid.ColumnSpan="2"
+				   Text="{Binding Path=Difference, Source={StaticResource CalcMax}, StringFormat={}{0:c}}"/>
 
 		</Grid>
 	</Grid>
